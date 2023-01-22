@@ -1,0 +1,26 @@
+{
+  "name": "js-ajax-part-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rmunirov/js-ajax-part-0.git",
+  "author": "'Rail Munirov'",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "cp ./githooks/* .git/hooks",
+    "lint-staged": "lint-staged",
+    "start": "parcel index.html",
+    "build": "parcel build index.html --public-url .",
+    "deploy": "yarn build && gh-pages -d dist"
+  },
+  "devDependencies": {
+    "eslint": "8.29.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.0",
+    "@parcel/transformer-less": "^2.8.0",
+    "gh-pages": "3.2.3",
+    "less": "4.1.3",
+    "parcel": "^2.8.0"
+  }
+}
