@@ -70,8 +70,9 @@ function insertToZone(zone, elem) {
 
     const insertToFreeZone = (elem) => {
         // calc element position in free zone
-        elem.style.left = `${parseInt(elem.style.left, 10) - free.getBoundingClientRect().left - 1}px`;
-        elem.style.top = `${parseInt(elem.style.top, 10) - free.getBoundingClientRect().top - 1}px`;
+        const rect = free.getBoundingClientRect();
+        elem.style.left = `${parseFloat(elem.style.left) - rect.left - window.scrollX - 1}px`;
+        elem.style.top = `${parseFloat(elem.style.top) - rect.top - window.scrollY - 1}px`;
         free.append(elem);
     };
 
