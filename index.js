@@ -31,11 +31,7 @@ function enterZone(zone) {
     if (!zone) {
         return;
     }
-    try {
-        zone.classList.add(`${zone.id}_target`);
-    } catch (e) {
-        error.innerHTML = 'Internal error, please contact with developers';
-    }
+    zone.classList.add(`${zone.id}_target`);
 }
 
 function leaveZone(zone) {
@@ -113,27 +109,28 @@ function startDrag(pageX, pageY, pointerType) {
     if (!draggableElement.elem) {
         return;
     }
-    try {
-        // turn off browser drag'n'drop
-        draggableElement.elem.addEventListener('dragstart', () => false);
+    // turn off browser drag'n'drop
+    draggableElement.elem.addEventListener('dragstart', () => false);
 
+    try {
         // change element position and add to document body
         draggableElement.elem.classList.add('element_move');
         document.body.append(draggableElement.elem);
-
-        // add events
-        document.addEventListener('pointermove', documentPointerMoveHandler);
-        if (pointerType === 'touch') {
-            element.addEventListener('pointerup', elementPointerUpHandler);
-        } else {
-            draggableElement.elem.addEventListener('pointerup', elementPointerUpHandler);
-        }
-
-        // move to pointer position
-        moveAt(pageX, pageY);
     } catch (e) {
         error.innerHTML = 'Internal error, please contact with developers';
+        return;
     }
+
+    // add events
+    document.addEventListener('pointermove', documentPointerMoveHandler);
+    if (pointerType === 'touch') {
+        element.addEventListener('pointerup', elementPointerUpHandler);
+    } else {
+        draggableElement.elem.addEventListener('pointerup', elementPointerUpHandler);
+    }
+
+    // move to pointer position
+    moveAt(pageX, pageY);
 }
 
 function documentPointerMoveHandler(event) {
